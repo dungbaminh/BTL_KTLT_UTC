@@ -1,0 +1,343 @@
+TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI
+KHOA CÔNG NGHỆ THÔNG TIN
+
+Đề cương bài tập lớn
+và kế hoạch thực hiện
+
+Quản lý nhân viên và chấm công nhân sự
+
+Học phần: Kỹ thuật lập trình — Ngôn ngữ C
+Quy mô: Nhóm 03 sinh viên
+Giảng viên hướng dẫn: ................................................
+Lớp: ........................  Nhóm: ........................
+Thời gian thực hiện: Từ ................ đến ................
+
+Thành viên: TV1 – Nhóm trưởng
+Họ và tên: ........................
+Mã sinh viên: ........................
+
+Thành viên: TV2
+Họ và tên: ........................
+Mã sinh viên: ........................
+
+Thành viên: TV3
+Họ và tên: ........................
+Mã sinh viên: ........................
+
+Mục đích và cách sử dụng
+
+Đề cương xác định phạm vi chương trình, thiết kế kỹ thuật và các đầu việc của từng thành viên. Kế hoạch đề xuất gồm 5 tuần, tương ứng 5 mốc làm việc trong yêu cầu môn học; đây là lịch nhóm tự đề xuất, có thể điều chỉnh theo lịch giảng viên.
+
+Tên thành viên, ngày bắt đầu, kết quả kiểm thử và tỷ lệ hoàn thành được cập nhật theo thực tế. Tài liệu này là kế hoạch triển khai, chưa xác nhận chương trình đã hoàn thành.
+
+Bố cục tài liệu
+
+1. Bài toán và chức năng
+2. Thiết kế và phân công tổng thể
+3–7. Tiến độ từng thành viên từ tuần 1 đến tuần 5
+8. Khung báo cáo và quản lý tiến độ
+
+1 Bài toán và chức năng
+
+Phát biểu và mục tiêu
+
+Xây dựng chương trình console bằng C để quản lý hồ sơ nhân viên, ghi nhận chấm công theo ngày, tổng hợp công và tính lương theo tháng. Dữ liệu được tổ chức bằng struct và danh sách liên kết, lưu ra tệp để khôi phục giữa các lần chạy.
+
+Đề tài bám theo gợi ý quản lý chấm công và tính lương nhân viên tại Phụ lục A của tài liệu môn học. Nhóm đăng ký đề tài với giảng viên và kiểm tra việc trùng đề tài trong lớp.
+
+Nhóm chức năng: Nhân viên
+Đầu việc phải xây dựng: Thêm, xem, sửa, xóa; kiểm tra mã duy nhất; tìm theo mã, một phần họ tên và phòng ban.
+
+Nhóm chức năng: Chấm công
+Đầu việc phải xây dựng: Thêm, sửa, xóa, xem công theo nhân viên và ngày; kiểm tra ngày và bản ghi trùng.
+
+Nhóm chức năng: Công và lương
+Đầu việc phải xây dựng: Tổng hợp ngày có làm việc, giờ thường, giờ tăng ca; tính và hiển thị bảng lương tháng.
+
+Nhóm chức năng: Sắp xếp và thống kê
+Đầu việc phải xây dựng: Theo tên; theo lương giảm dần và mã tăng dần khi bằng lương; tổng hợp nhân sự, giờ công và quỹ lương theo phòng.
+
+Nhóm chức năng: Lưu trữ và giao diện
+Đầu việc phải xây dựng: Menu lặp, kiểm tra nhập liệu; đọc lúc khởi động, lưu theo yêu cầu và khi thoát.
+
+Quy tắc nghiệp vụ thống nhất
+
+Mỗi nhân viên có một mã duy nhất và tối đa một bản ghi công mỗi ngày. Giờ thường từ 0 đến 8; giờ tăng ca từ 0 đến 4. Ngày có tổng giờ lớn hơn 0 được tính là ngày có làm việc. Thiếu bản ghi là chưa ghi nhận, không tự động coi là nghỉ không phép.
+
+Lương tháng = Tổng giờ thường × Đơn giá giờ + Tổng giờ tăng ca × Đơn giá giờ × 1,5. Hệ số 1,5 là quy ước mô phỏng của bài tập. Chưa tính thuế, bảo hiểm, phép hưởng lương hoặc các chế độ tăng ca thực tế.
+
+Xóa nhân viên có dữ liệu công phải xác nhận trước khi xóa toàn bộ dữ liệu liên quan. Không đổi mã nhân viên trong chức năng sửa. Đơn giá giờ áp dụng cho dữ liệu được tính tại thời điểm chạy; chưa quản lý lịch sử thay đổi đơn giá.
+
+2 Thiết kế và phân công tổng thể
+
+Cấu trúc dữ liệu và lưu tệp
+
+Ngay gồm ngày, tháng, năm. NhanVien gồm mã, họ tên, phòng ban, chức vụ và đơn giá giờ. ChamCong gồm ngày, giờ thường và giờ tăng ca. NodeNhanVien chứa hồ sơ, con trỏ đầu danh sách công và con trỏ nhân viên kế tiếp; NodeChamCong chứa bản ghi công và con trỏ kế tiếp.
+
+Dùng malloc để tạo nút và free để thu hồi bộ nhớ. Khi xóa một nhân viên hoặc thoát, giải phóng cả danh sách công. Hàm thay đổi đầu danh sách nhận con trỏ kép; hàm chỉ đọc ưu tiên tham số const.
+
+Tệp nhansu.dat lưu mã nhận dạng, phiên bản, số nhân viên; sau đó lần lượt lưu hồ sơ và số bản ghi công của từng người. Không ghi địa chỉ con trỏ. Khi đọc phải cấp phát, nối lại danh sách, kiểm tra số lượng và kết quả fread. Tệp dùng trong cùng môi trường biên dịch. Lỗi đọc không được dẫn đến ghi đè tự động lên tệp gốc.
+
+Phân công module
+
+Người: TV1
+Module chính: nhanvien.c/.h
+Trách nhiệm phối hợp: Thiết kế struct; CRUD nhân viên; tìm kiếm; giải phóng bộ nhớ; tích hợp.
+
+Người: TV2
+Module chính: chamcong.c/.h
+Trách nhiệm phối hợp: CRUD chấm công; đệ quy tổng giờ; tính lương; sắp xếp và thống kê.
+
+Người: TV3
+Module chính: file.c/.h, input.c/.h, main.c
+Trách nhiệm phối hợp: Lưu/đọc; menu; kiểm tra nhập liệu; kiểm thử tổng thể; tổng hợp báo cáo.
+
+Hàm và thuật toán dự kiến
+
+Các hàm chính: themNhanVien, suaNhanVien, xoaNhanVien, timTheoMa, timTheoTen, themChamCong, suaChamCong, xoaChamCong, tongGioThuongDeQuy, tongGioTangCaDeQuy, tinhLuongThang, sapXepTheoLuong, thongKePhongBan, docDuLieu, ghiDuLieu, giaiPhongDanhSach. main chỉ điều phối.
+
+Đệ quy duyệt danh sách công: nút rỗng trả 0; nút đúng tháng và năm đóng góp giờ công; cộng với kết quả của phần danh sách còn lại. Kết quả được dùng trực tiếp trong tính lương. Sắp xếp phải giữ hồ sơ và danh sách công của cùng nhân viên đi cùng nhau.
+
+Trước khi viết riêng, cả nhóm chốt kiểu dữ liệu, tên hàm, tham số và mã trả về trong tệp header chung. TV1 rà tích hợp, TV2 rà công thức, TV3 rà dữ liệu lưu và nhập liệu.
+
+3 Tuần 1 khảo sát và thống nhất yêu cầu
+
+Thời gian: Từ ................ đến ................    |    Mốc kiểm tra: Cuối tuần
+
+TV1 nhiệm vụ và bàn giao
+
+Đầu việc: Đọc yêu cầu môn; lập danh sách chức năng; mô tả bài toán; lập bảng phân công; phác thảo struct và danh sách liên kết.
+
+Sản phẩm: Đề cương Chương 1; bảng phân công; bản thiết kế dữ liệu nháp.
+
+TV2 nhiệm vụ và bàn giao
+
+Đầu việc: Xác định quy tắc công và lương; thiết kế trường dữ liệu chấm công; chọn bài toán đệ quy; lập ví dụ tính tay.
+
+Sản phẩm: Bảng quy tắc nghiệp vụ; 3 ví dụ lương; thiết kế hàm tổng giờ.
+
+TV3 nhiệm vụ và bàn giao
+
+Đầu việc: Chuẩn bị môi trường C; tạo cấu trúc thư mục; phác thảo menu; thiết kế định dạng tệp và danh sách kiểm thử.
+
+Sản phẩm: Khung dự án biên dịch được; menu nháp; đặc tả tệp và kế hoạch kiểm thử.
+
+Phối hợp và kiểm tra
+
+Chốt phạm vi, struct và giao diện hàm. Cả nhóm đọc chéo bản thiết kế; TV1 tổng hợp và đăng ký đề tài.
+
+Điều kiện hoàn thành tuần
+
+Đề cương có đủ chức năng bắt buộc; mỗi trường dữ liệu có kiểu rõ ràng; công thức có ví dụ kiểm chứng; mọi người biên dịch được khung dự án.
+
+Bàn giao sang mốc tiếp theo
+
+Thống nhất header trước khi viết module ở tuần 2. Mục tiêu lũy kế kế hoạch: 15%.
+
+Cập nhật thực tế: TV1 ........%   TV2 ........%   TV3 ........%
+Vướng mắc và người xử lý: ................................................................
+Ngày kiểm tra và người xác nhận: .......................................................
+
+4 Tuần 2 cài đặt dữ liệu và thao tác cơ bản
+
+Thời gian: Từ ................ đến ................    |    Mốc kiểm tra: Cuối tuần
+
+TV1 nhiệm vụ và bàn giao
+
+Đầu việc: Cài đặt khởi tạo, tạo nút, thêm, xem và tìm mã; bổ sung sửa, xóa; xử lý đầu, giữa, cuối danh sách; giải phóng công khi xóa.
+
+Sản phẩm: Module nhân viên chạy độc lập; ca thử danh sách rỗng, một nút và nhiều nút.
+
+TV2 nhiệm vụ và bàn giao
+
+Đầu việc: Cài đặt thêm, xem, sửa, xóa chấm công; kiểm tra ngày, năm nhuận, mã tồn tại và công trùng; liên kết công với nhân viên.
+
+Sản phẩm: Module chấm công cơ bản; bộ dữ liệu nhiều ngày và nhiều nhân viên.
+
+TV3 nhiệm vụ và bàn giao
+
+Đầu việc: Cài đặt nhập chuỗi và số bằng đọc dòng; xử lý dữ liệu sai định dạng, quá dài; xây menu con; cài ghi/đọc thử một hồ sơ.
+
+Sản phẩm: input.c/.h; menu điều hướng; nguyên mẫu đọc/ghi và ghi chú lỗi.
+
+Phối hợp và kiểm tra
+
+TV1 cung cấp hàm tìm mã và struct đã chốt cho TV2, TV3. TV3 ghép menu với các hàm đã chạy được.
+
+Điều kiện hoàn thành tuần
+
+Thêm/sửa/xóa đúng; không trùng mã hoặc trùng ngày; ngày sai và số sai bị từ chối; không hỏng danh sách sau thao tác xóa.
+
+Bàn giao sang mốc tiếp theo
+
+Bàn giao module kèm cách gọi và ca thử. Mục tiêu lũy kế kế hoạch: 40%.
+
+Cập nhật thực tế: TV1 ........%   TV2 ........%   TV3 ........%
+Vướng mắc và người xử lý: ................................................................
+Ngày kiểm tra và người xác nhận: .......................................................
+
+5 Tuần 3 hoàn thiện công và lương cùng lưu trữ
+
+Thời gian: Từ ................ đến ................    |    Mốc kiểm tra: Cuối tuần
+
+TV1 nhiệm vụ và bàn giao
+
+Đầu việc: Hoàn thiện tìm theo tên và phòng; rà con trỏ và bộ nhớ; bổ sung hàm hỗ trợ thống kê; viết mô tả thao tác danh sách.
+
+Sản phẩm: Module nhân viên hoàn chỉnh; phần thiết kế và giải thích CRUD.
+
+TV2 nhiệm vụ và bàn giao
+
+Đầu việc: Viết đệ quy tổng giờ theo tháng/năm; đếm ngày có công; tính lương; sắp xếp theo tên và lương/mã; thống kê phòng ban.
+
+Sản phẩm: Module công/lương; bảng kết quả đối chiếu tính tay; giải thích hàm đệ quy.
+
+TV3 nhiệm vụ và bàn giao
+
+Đầu việc: Hoàn thiện lưu/đọc mọi nhân viên và công; tái tạo liên kết; đọc lúc mở; lưu khi thoát; xử lý thiếu tệp, lỗi đọc/ghi.
+
+Sản phẩm: Module tệp hoàn chỉnh; kịch bản lưu, thoát, chạy lại; bản chương trình tích hợp.
+
+Phối hợp và kiểm tra
+
+Tích hợp theo luồng thêm nhân viên → chấm công → tính lương → lưu → mở lại. TV1 rà liên kết, TV2 rà kết quả, TV3 rà lưu trữ.
+
+Điều kiện hoàn thành tuần
+
+Tổng hợp đúng tháng/năm; ví dụ 160 giờ thường và 10 giờ tăng ca với đơn giá 50.000 cho kết quả 8.750.000 đồng; mở lại giữ nguyên dữ liệu.
+
+Bàn giao sang mốc tiếp theo
+
+Đóng băng giao diện hàm khi kết thúc tuần. Mục tiêu lũy kế kế hoạch: 70%.
+
+Cập nhật thực tế: TV1 ........%   TV2 ........%   TV3 ........%
+Vướng mắc và người xử lý: ................................................................
+Ngày kiểm tra và người xác nhận: .......................................................
+
+6 Tuần 4 kiểm thử tích hợp và hoàn thiện báo cáo
+
+Thời gian: Từ ................ đến ................    |    Mốc kiểm tra: Cuối tuần
+
+TV1 nhiệm vụ và bàn giao
+
+Đầu việc: Rà tính nhất quán hồ sơ/công sau sắp xếp; thử xóa đầu, giữa, cuối; sửa lỗi con trỏ; hoàn thiện Chương 1 và phần cấu trúc Chương 2.
+
+Sản phẩm: Mã đã sửa lỗi; nội dung báo cáo phần phụ trách; danh sách vấn đề còn lại.
+
+TV2 nhiệm vụ và bàn giao
+
+Đầu việc: Đối chiếu tổng giờ, lương và thống kê với tính tay; thử tháng rỗng, năm khác, giờ biên; hoàn thiện giải thích thuật toán ở Chương 3.
+
+Sản phẩm: Bảng đối chiếu số liệu; nội dung đệ quy, sắp xếp và tính lương.
+
+TV3 nhiệm vụ và bàn giao
+
+Đầu việc: Chạy bộ kiểm thử chung; thử dữ liệu nhập sai và tệp lỗi; ghi kết quả thực tế; chụp màn hình; tổng hợp báo cáo Word và hướng dẫn chạy.
+
+Sản phẩm: Nhật ký kiểm thử; ảnh thực tế; báo cáo bản nháp; hướng dẫn biên dịch.
+
+Phối hợp và kiểm tra
+
+Mỗi lỗi ghi điều kiện tái hiện, người sửa và kết quả chạy lại. Kiểm thử chéo: TV1 rà tệp; TV2 rà nhân viên; TV3 rà công/lương.
+
+Điều kiện hoàn thành tuần
+
+Không còn lỗi làm mất dữ liệu hoặc dừng bất thường đã biết; các ca bắt buộc có kết quả thực tế; ảnh minh họa khớp phiên bản mã.
+
+Bàn giao sang mốc tiếp theo
+
+Chỉ bổ sung chức năng nếu không ảnh hưởng ổn định. Mục tiêu lũy kế kế hoạch: 90%.
+
+Cập nhật thực tế: TV1 ........%   TV2 ........%   TV3 ........%
+Vướng mắc và người xử lý: ................................................................
+Ngày kiểm tra và người xác nhận: .......................................................
+
+7 Tuần 5 chốt sản phẩm và chuẩn bị bảo vệ
+
+Thời gian: Từ ................ đến ................    |    Mốc kiểm tra: Cuối tuần
+
+TV1 nhiệm vụ và bàn giao
+
+Đầu việc: Chốt mã nguồn; biên dịch từ thư mục sạch; rà đủ yêu cầu; hoàn thiện bảng phân công thực tế; chuẩn bị thuyết trình bài toán, dữ liệu và CRUD.
+
+Sản phẩm: Bản mã cuối; bảng đối chiếu yêu cầu; phần trình bày của TV1.
+
+TV2 nhiệm vụ và bàn giao
+
+Đầu việc: Chạy lại ca thử tính lương sau sửa lỗi; chuẩn bị dữ liệu demo; luyện giải thích đệ quy, độ phức tạp và cách giữ dữ liệu khi sắp xếp.
+
+Sản phẩm: Dữ liệu mẫu; kịch bản demo; phần trình bày thuật toán của TV2.
+
+TV3 nhiệm vụ và bàn giao
+
+Đầu việc: Chốt báo cáo, mục lục và ảnh; rà tài liệu tham khảo; đóng gói .c/.h và dữ liệu mẫu; thử lưu/đọc lần cuối; chuẩn bị phần menu và tệp.
+
+Sản phẩm: Báo cáo .docx; hướng dẫn chạy; thư mục nộp; phần trình bày của TV3.
+
+Phối hợp và kiểm tra
+
+Cả ba chạy demo từ đầu đến cuối và vấn đáp chéo. Mỗi người giải thích được cấu trúc dữ liệu, hàm đệ quy, con trỏ và lưu/đọc, kể cả phần không trực tiếp viết.
+
+Điều kiện hoàn thành tuần
+
+Biên dịch không lỗi; bộ kiểm thử bắt buộc đạt; dữ liệu mẫu khôi phục được; báo cáo đủ cấu trúc; tên thư mục đúng mẫu môn học.
+
+Bàn giao sang mốc tiếp theo
+
+Chỉ xác nhận hoàn thành khi đủ bằng chứng bàn giao. Mục tiêu lũy kế kế hoạch: 100%.
+
+Cập nhật thực tế: TV1 ........%   TV2 ........%   TV3 ........%
+Vướng mắc và người xử lý: ................................................................
+Ngày kiểm tra và người xác nhận: .......................................................
+
+8 Khung báo cáo và quản lý tiến độ
+
+Các đầu mục báo cáo phải hoàn thiện
+
+Đầu mục: Trang bìa và phân công
+Nội dung cần viết: Thông tin trường, khoa, học phần, đề tài, nhóm; nhiệm vụ và mức hoàn thành thực tế.
+Chủ trì: TV1
+
+Đầu mục: Mục lục
+Nội dung cần viết: Cập nhật theo các chương, mục và số trang bản cuối.
+Chủ trì: TV3
+
+Đầu mục: Chương 1
+Nội dung cần viết: Phát biểu bài toán, phạm vi, chức năng, quy tắc nghiệp vụ.
+Chủ trì: TV1
+
+Đầu mục: Chương 2
+Nội dung cần viết: Struct, danh sách liên kết, tổ chức hàm/module, menu, định dạng tệp.
+Chủ trì: TV1 + TV3
+
+Đầu mục: Chương 3
+Nội dung cần viết: Mã tiêu biểu và giải thích CRUD, con trỏ, đệ quy, tính lương, lưu/đọc.
+Chủ trì: Cả nhóm
+
+Đầu mục: Chương 4
+Nội dung cần viết: Ảnh chạy thực tế, dữ liệu đầu vào, đầu ra, bảng kiểm thử và nhận xét.
+Chủ trì: TV3 + TV2
+
+Đầu mục: Kết luận và tham khảo
+Nội dung cần viết: Kết quả thực tế, hạn chế, hướng phát triển; nguồn đã sử dụng.
+Chủ trì: Cả nhóm
+
+Theo dõi đầu việc
+
+Mỗi việc theo dõi bằng mã, người phụ trách, tuần phải xong, trạng thái và bằng chứng. Trạng thái dùng: Chưa làm, Đang làm, Chờ kiểm tra, Hoàn thành, Bị vướng. Chỉ đánh dấu hoàn thành sau khi người kiểm tra chéo xác nhận sản phẩm đạt yêu cầu.
+
+Mã việc: W…–TV…–…
+Người: …
+Hạn: Tuần …
+Trạng thái và bằng chứng: …
+
+Mã việc: W…–TV…–…
+Người: …
+Hạn: Tuần …
+Trạng thái và bằng chứng: …
+
+Danh mục kiểm tra trước khi nộp
+
+Đủ struct và danh sách liên kết động; có thêm/xóa/sửa/tìm; ít nhất 7–10 hàm; tham số con trỏ; đệ quy có ý nghĩa; menu lặp và kiểm tra nhập; đọc khi mở và lưu khi thoát; dữ liệu không mất giữa các lần chạy; giải phóng bộ nhớ; mã nguồn biên dịch được; có dữ liệu mẫu, bảng phân công và báo cáo.
+
+Bộ nộp: mã nguồn .c/.h, dữ liệu mẫu, hướng dẫn biên dịch và báo cáo .docx hoặc .pdf. Tên thư mục theo mẫu tài liệu môn học: Nhóm_STT_Lớp_BTL_LTNC. Kết quả kiểm thử, ảnh và mức hoàn thành chỉ ghi theo thực tế.
