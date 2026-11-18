@@ -1,0 +1,71 @@
+﻿HƯỚNG DẪN BIÊN DỊCH VÀ CHẠY CHƯƠNG TRÌNH TRÊN WINDOWS
+Nhóm 24 - Quản lý chấm công và tính lương nhân viên
+
+1. CHUẨN BỊ
+- Máy cần cài GCC dành cho Windows và thêm thư mục bin của GCC vào PATH.
+- Đặt các file sau trong cùng một thư mục:
+  main.c, nhanvien.c, luong.c, luutru.c, btl.h
+- Đặt input_cham_cong_30_nguoi.txt trong thư mục đó nếu muốn nhập tự động 30 người.
+- Có thể đặt thư mục ở vị trí bất kỳ. Các lệnh dưới đây dùng thư mục hiện tại, không cần đường dẫn tuyệt đối.
+
+2. MỞ POWERSHELL TẠI THƯ MỤC MÃ NGUỒN
+Mở thư mục bằng File Explorer. Nhấn vào thanh địa chỉ, nhập powershell rồi nhấn Enter.
+
+Kiểm tra GCC:
+gcc --version
+
+Nếu hiện thông tin phiên bản, tiếp tục bước 3.
+
+3. BIÊN DỊCH
+Chạy toàn bộ lệnh sau trên một dòng:
+gcc -std=c11 -Wall -Wextra -Wpedantic main.c nhanvien.c luong.c luutru.c -o quanly.exe
+
+Nếu không có thông báo lỗi, file quanly.exe được tạo trong thư mục hiện tại.
+Không cần biên dịch riêng btl.h; các file .c đọc nó qua lệnh include.
+
+4. CHẠY VÀ NHẬP BẰNG BÀN PHÍM
+.\quanly.exe
+
+Nhập số chức năng trên menu rồi làm theo yêu cầu của chương trình.
+
+5. CHẠY FILE INPUT 30 NGƯỜI
+Trong PowerShell:
+cmd /c ".\quanly.exe < input_cham_cong_30_nguoi.txt"
+
+PowerShell cần gọi qua cmd /c để dùng dấu chuyển hướng đầu vào <.
+Chương trình tự thêm 30 nhân viên, chấm công, in bảng lương, thống kê, lưu và thoát.
+Dữ liệu được lưu vào nhanvien.dat trong thư mục hiện tại.
+
+6. LƯU KẾT QUẢ CHẠY RA FILE
+Nếu muốn lưu phần hiển thị để xem sau, dùng lệnh này thay cho lệnh ở bước 5:
+cmd /c ".\quanly.exe < input_cham_cong_30_nguoi.txt > ket_qua_30_nguoi.txt"
+
+Mở file kết quả:
+notepad ket_qua_30_nguoi.txt
+
+Lưu ý: bước 5 và bước 6 đều nhập dữ liệu thật. Chỉ chọn một cách, không chạy liên tiếp cả hai trên cùng dữ liệu.
+
+7. TRÁNH TRÙNG MÃ NHÂN VIÊN
+File input dùng mã CC001 đến CC030, chỉ nên nạp một lần vào danh sách chưa có các mã này.
+Nếu đang có nhanvien.dat cần giữ, hãy sao chép quanly.exe và file input sang một thư mục thử mới, rồi mở terminal tại thư mục mới để chạy.
+Sau khi nhập xong, mở lại chương trình bằng .\quanly.exe để xem và thao tác với dữ liệu đã lưu.
+
+8. NẾU DÙNG COMMAND PROMPT (CMD)
+Mở thư mục mã nguồn bằng File Explorer, nhập cmd vào thanh địa chỉ rồi nhấn Enter.
+Dùng cùng lệnh gcc ở bước 3 để biên dịch.
+
+Chạy nhập bằng bàn phím:
+quanly.exe
+
+Chạy file 30 người:
+quanly.exe < input_cham_cong_30_nguoi.txt
+
+Hoặc lưu kết quả ra file thay cho lệnh trên:
+quanly.exe < input_cham_cong_30_nguoi.txt > ket_qua_30_nguoi.txt
+
+9. MỘT SỐ LỖI THƯỜNG GẶP
+- Không tìm thấy gcc: kiểm tra đã cài GCC và thêm thư mục bin vào PATH, sau đó mở lại terminal.
+- Không tìm thấy main.c: nhập dir để kiểm tra đang mở đúng thư mục mã nguồn.
+- Không tìm thấy file input: kiểm tra tên file và đặt file cùng thư mục đang chạy.
+- Thiếu DLL khi chạy: kiểm tra thư mục bin của bộ GCC đã có trong PATH.
+- Nhập tiền bằng chữ số, ví dụ 10400000, không dùng dấu phân cách hàng nghìn.

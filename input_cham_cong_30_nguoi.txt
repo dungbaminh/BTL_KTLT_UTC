@@ -1,0 +1,274 @@
+1
+CC001
+Ly Bao Ngoc
+Ke toan
+8500000
+6
+CC001
+21
+25
+1
+CC002
+Do Thanh Truc
+Kinh doanh
+9000000
+6
+CC002
+22
+4.5
+1
+CC003
+Ngo Thien An
+Truong nhom
+15500000
+6
+CC003
+20
+23.5
+1
+CC004
+Vo Trung Hieu
+Kinh doanh
+20000000
+6
+CC004
+20
+3.5
+1
+CC005
+Dang Gia Khang
+Hanh chinh
+10500000
+6
+CC005
+21
+29.5
+1
+CC006
+Bui Viet Hung
+Truong nhom
+16500000
+6
+CC006
+22
+10.5
+1
+CC007
+Hoang Duy Khanh
+Hanh chinh
+15500000
+6
+CC007
+20
+8
+1
+CC008
+Duong Anh Tuan
+Kinh doanh
+7000000
+6
+CC008
+24
+12
+1
+CC009
+Vo Thuy Tien
+Ky thuat vien
+13500000
+6
+CC009
+24
+22.5
+1
+CC010
+Le Thu Ha
+Kinh doanh
+16000000
+6
+CC010
+25
+24
+1
+CC011
+Vu Mai Chi
+Ke toan
+12500000
+6
+CC011
+26
+22.5
+1
+CC012
+Dang Ngoc Han
+Truong nhom
+18500000
+6
+CC012
+19
+27
+1
+CC013
+Duong My Duyen
+Hanh chinh
+7500000
+6
+CC013
+18
+5
+1
+CC014
+Phan Duc Huy
+Ky thuat vien
+17000000
+6
+CC014
+23
+17
+1
+CC015
+Pham Quoc Bao
+Nhan vien
+11500000
+6
+CC015
+22
+21
+1
+CC016
+Do Tuan Kiet
+Nhan vien
+10500000
+6
+CC016
+25
+30
+1
+CC017
+Hoang Ngoc Linh
+Hanh chinh
+14000000
+6
+CC017
+22
+12
+1
+CC018
+Vu Thanh Tam
+Hanh chinh
+17500000
+6
+CC018
+23
+19.5
+1
+CC019
+Ho Gia Bao
+Ky thuat vien
+15500000
+6
+CC019
+19
+27.5
+1
+CC020
+Nguyen Minh Anh
+Kinh doanh
+18000000
+6
+CC020
+25
+5
+1
+CC021
+Ho Khanh Vy
+Truong nhom
+17000000
+6
+CC021
+25
+19
+1
+CC022
+Pham Kim Ngan
+Ky thuat vien
+13000000
+6
+CC022
+23
+23.5
+1
+CC023
+Nguyen Tien Dat
+Nhan vien
+10000000
+6
+CC023
+20
+7
+1
+CC024
+Phan Nhat Minh
+Ke toan
+9000000
+6
+CC024
+22
+7
+1
+CC025
+Ly Hoang Phuc
+Kinh doanh
+8000000
+6
+CC025
+21
+23
+1
+CC026
+Tran Phuong Thao
+Ke toan
+11000000
+6
+CC026
+23
+10.5
+1
+CC027
+Tran Hoang Nam
+Nhan vien
+8500000
+6
+CC027
+25
+18.5
+1
+CC028
+Ngo Minh Chau
+Ke toan
+18500000
+6
+CC028
+19
+28.5
+1
+CC029
+Bui Hai Yen
+Ky thuat vien
+18000000
+6
+CC029
+24
+13
+1
+CC030
+Le Quang Vinh
+Ke toan
+15000000
+6
+CC030
+25
+24.5
+7
+9
+10
+0
